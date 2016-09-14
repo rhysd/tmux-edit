@@ -28,8 +28,8 @@ get_editor_command() {
 set_copy_mode_edit_bindings() {
     local key=$(get_tmux_option "@edit-binding", "$default_edit_key")
     local cmdline="${OPENER} \"$(get_editor_command)\" \"\$(tmux show-buffer)\""
-    tmux bind-key -t vi-copy "$key" copy-pipe "$cmdline"
-    tmux bind-key -t emacs-copy "$key" copy-pipe "$cmdline"
+    tmux bind-key -t vi-copy "$key" run-shell "$cmdline"
+    tmux bind-key -t emacs-copy "$key" run-shell "$cmdline"
 }
 
 main() {
